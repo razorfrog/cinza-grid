@@ -1,0 +1,348 @@
+/* Options */
+
+#cgrid-optionset {
+    padding: 15px 0;
+}
+
+#cgrid-optionset .cgrid-heading p {
+    margin: 15px 0 5px;
+    padding: 15px 0 0;
+    font-weight: bold;
+    border-top: 1px solid #c3c4c7;
+}
+
+#cgrid-optionset .cgrid-options {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#cgrid-optionset .cgrid-options.col-1 {
+    width: 170px;
+}
+
+#cgrid-optionset .cgrid-options.col-2 {
+	width: calc(100% - 160px);
+}
+
+#cgrid-optionset .cgrid-options input[type="text"],
+#cgrid-optionset .cgrid-options input[type="number"],
+#cgrid-optionset .cgrid-options select {
+    width: 200px;
+}
+
+#cgrid-optionset .cgrid-options input[type="text"]#cgrid_tax_terms {
+	width: 100% !important;
+}
+
+#cgrid-optionset thead .cgrid-options {
+	padding: 0;
+}
+
+#cgrid-optionset thead p {
+    font-size: 15px;
+    margin: 0;
+    padding: 10px;
+    background: #f6f6f6;
+    font-weight: bold;
+    border-radius: 3px;
+    text-align: center;
+}
+
+#cgrid-optionset tbody > tr:first-of-type > td {
+	padding-top: 28px !important;
+}
+
+#cgrid-optionset tbody > tr:first-of-type > td > p:first-of-type {
+	margin-top: 0;
+}
+
+#cgrid-options textarea {
+    height: 150px;
+    margin: 10px 0 0;
+}
+
+#cgrid-optionset .meta-disabled {
+	display: none;
+}
+
+#cgrid-options tr.tr-separator td {
+    padding: 0px 0px 20px;
+	border-bottom: 3px solid #f1f1f1;
+}
+
+#cgrid-optionset.cgrid-sizeset {
+	padding: 0;
+}
+
+#cgrid-optionset.cgrid-sizeset .size-headings td {
+	font-weight: bold;
+	padding-top: 20px;
+}
+
+#cgrid-optionset.cgrid-sizeset td.cgrid-options {
+	width: 150px !important;
+}
+
+#cgrid-optionset.cgrid-sizeset td.cgrid-options.col-1 {
+	font-weight: bold;
+}
+
+#cgrid-optionset.cgrid-sizeset .cgrid-options input[type="number"] {
+	width: 100px;
+}
+
+#cgrid-optionset ul {
+    list-style: disc inside !important;
+    margin: 0 0 0 3px;
+}
+
+.wp-core-ui.post-type-cinza_grid #publishing-action input#publish {
+	width: 80px;
+}
+
+/* Skin */
+
+#cgrid-skin textarea {
+    height: 150px;
+    margin: 10px 0 0;
+}
+
+#cgrid-skin .cgrid-skin-tags {
+	padding-bottom: 10px;
+}
+
+#cgrid-skin .cgrid-skin-tags td:first-child {
+	padding-right: 20px;
+}
+
+/* Focus */
+
+.wp-core-ui.post-type-cinza_grid form#post input[type=color]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=date]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=datetime-local]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=datetime]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=email]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=month]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=number]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=password]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=radio]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=search]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=tel]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=text]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=time]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=url]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post input[type=week]:focus, 
+.wp-core-ui.post-type-cinza_grid form#post select:focus, 
+.wp-core-ui.post-type-cinza_grid form#post textarea:focus,
+.wp-core-ui.post-type-cinza_grid form#post .button:focus,
+#cgrid-credits a:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: 2px solid transparent;
+}
+
+.wp-core-ui.post-type-cinza_grid form#post input[type=checkbox]:focus {
+    border-color: #2271b1 !important;
+    box-shadow: 0 0 0 2px #2271b1 !important;
+    outline: 2px solid transparent !important;
+}
+
+/* Checkbox toggle */
+
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    position: relative !important;
+    border: 0 !important;
+    outline: 0 !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    background: none !important;
+    width: 50px !important;
+    height: 25px !important;
+    margin: 0 15px 0 0 !important;
+    border-radius: 50px !important;
+}
+
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:after {
+    content: '';
+    width: 50px;
+    height: 25px;
+    display: inline-block;
+    background: rgba(196, 195, 195, 0.8);
+    border-radius: 18px;
+    clear: both;
+}
+
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    margin: 0;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:checked:before {
+    left: 25px;
+    box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:checked:after {
+    background: #2271b1;
+}
+
+
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:before,
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:after,
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:checked:before,
+.wp-admin.post-type-cinza_grid #postbox-container-2 input[type=checkbox]:checked:after {
+    transition: ease .3s;
+    -webkit-transition: ease .3s;
+    -moz-transition: ease .3s;
+    -o-transition: ease .3s;
+}
+
+/* Documentation */
+
+#cgrid-documentation .inside,
+#cgrid-shortcode .inside,
+#cgrid-credits .inside {
+    overflow: hidden;
+    padding: 12px;
+    margin: 0;
+}
+
+#cgrid-documentation .button {
+    width: 100%;
+    text-align: center;
+}
+
+/* Credits */
+
+#cgrid-credits .inside {
+    overflow: hidden;
+    padding: 12px;
+    margin: 0;
+}
+
+#cgrid-credits a {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0 0 10px;
+}
+
+#cgrid-credits a:last-child {
+    margin-bottom: 0px;
+}
+
+#cgrid-credits a img {
+    width: 40px;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+/* Others */
+
+.rank-math-seo-score {display: none !important;}
+
+/* Breakpoins */
+
+@media screen and (max-width: 899px) {
+	/* Force table to not be like tables anymore */
+	table.cgrid-sizeset, .cgrid-sizeset thead, .cgrid-sizeset tbody, .cgrid-sizeset th, .cgrid-sizeset td, .cgrid-sizeset tr { 
+		width: 100%;
+	    display: flex;
+	    flex-wrap: wrap;
+	    align-items: center;
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.cgrid-sizeset tr.size-headings { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	#cgrid-optionset.cgrid-sizeset td.cgrid-options.col-1 {
+	    padding: 20px 10px !important;
+	}
+	
+ 	.cgrid-sizeset tr {
+	 	overflow: hidden;
+ 	}
+	
+	#cgrid-optionset.cgrid-sizeset td.cgrid-options { 
+		/* Behave  like a "row" */
+		width: 100% !important;
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding: 10px 10px 10px 200px !important;
+	}
+	
+	.cgrid-sizeset td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 15px;
+		left: 10px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	.cgrid-sizeset td span {
+		margin-left: 5px;
+	}
+	
+	/*
+	Label the data
+	*/
+	.cgrid-sizeset td:nth-of-type(1):before { content: ""; }
+	.cgrid-sizeset td:nth-of-type(2):before { content: "Min-width"; }
+	.cgrid-sizeset td:nth-of-type(3):before { content: "Number of columns"; }
+	.cgrid-sizeset td:nth-of-type(4):before { content: "Items min-height"; }
+	.cgrid-sizeset td:nth-of-type(5):before { content: "Items spacing"; }
+}
+
+@media screen and (max-width: 782px) {
+	.cgrid-sizeset td:before {top: 20px;}
+}
+
+@media screen and (max-width: 599px) {
+	#cgrid-optionset .cgrid-options.col-1 {
+	    width: 100%;
+	    display: block;
+	    padding: 10px 10px 5px;
+	}
+	
+	#cgrid-optionset .cgrid-options.col-2 {
+	    width: 100%;
+	    display: block;
+	    padding: 0px 10px 10px;
+	}
+	
+	.cgrid-skin-tags tr {display: block; padding-bottom: 15px;}
+	.cgrid-skin-tags td {display: block;}
+	
+	#cgrid-optionset tbody > tr:first-of-type > td:not(.col-1) {
+		padding-top: 0px !important;
+	}
+}
+
+@media screen and (max-width: 399px) {
+    #cgrid-optionset.cgrid-sizeset td.cgrid-options {padding-left: 150px !important;}
+    
+    #cgrid-optionset.cgrid-sizeset .cgrid-options input[type="number"] {width: 80px;}
+}
