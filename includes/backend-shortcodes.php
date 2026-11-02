@@ -323,8 +323,8 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 		}
 
 		// URL query string
-		// Example: https://vinicius.razorfrog.dev/grid-shortcode-test/#filter=.blue
-		// Example: https://vinicius.razorfrog.dev/grid-shortcode-test/#filter=.blue.small.scrollto-rowID
+		// Example: https://example.com/grid-page/#filter=.blue
+		// Example: https://example.com/grid-page/#filter=.blue.small.scrollto-rowID
 
 		function getHashFilter()
 		{
