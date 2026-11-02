@@ -7,16 +7,7 @@ Cinza Grid is a minimal grid plugin built with [Isotope](https://isotope.metafiz
 - **Current release:** 2.0.0 · requires WordPress 5.2 and PHP 7.2 · tested up to WordPress 7.1
 - **License:** GPLv2 or later
 
-`readme.txt` is the WordPress.org plugin page (description, FAQ, changelog). This file is only for working on the code.
-
-## Releasing
-
-Releases ship to WordPress.org SVN by hand; nothing here deploys automatically.
-
-1. Bump the version in the plugin header and in `readme.txt` (`Stable tag`), and add a changelog entry.
-2. Push to `main` and wait for the **Check** workflow to pass.
-3. Copy the plugin into SVN `trunk/`, leaving out everything in `.distignore`, then copy `trunk/` to `tags/<version>/` and commit.
-4. Tag the release here: `git tag <version> && git push --tags`.
+`readme.txt` is the WordPress.org plugin page (description, FAQ, changelog). For help, use the plugin's support forum on WordPress.org.
 
 ## Checks
 
