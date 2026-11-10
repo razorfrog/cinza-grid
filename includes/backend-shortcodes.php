@@ -6,6 +6,22 @@ function cgrid_shortcodes_init() {
 	add_shortcode( 'cinza_grid', 'cgrid_shortcode' ); // Fallback
 }
 
+/**
+ * Regex for a placeholder like %name('argument')%, capturing the argument.
+ *
+ * The quotes can also be encoded (&apos;, &#39;, &#039; or &#x27;), which is
+ * how wp_kses saves them inside HTML attributes, e.g.
+ * src="%imgurl(&apos;medium_large&apos;)%". The whole placeholder is always
+ * replaced, so the quotes never reach the page.
+ *
+ * @param string $name Placeholder name, like 'imgurl'.
+ * @return string
+ */
+function cgrid_skin_tag_pattern( $name ) {
+	$quote = "(?:'|&apos;|&#0*39;|&#[xX]0*27;)";
+	return '/%' . preg_quote( $name, '/' ) . '\\(' . $quote . '(.+?)' . $quote . '\\)%/';
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Grid shortcode
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -399,16 +415,14 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 			$filter_classes = "";
 
 			// Replace %date('l F j, Y')%
-			$pattern_date = "/%date\('([^']+)'\)%/";
+			$pattern_date = cgrid_skin_tag_pattern( 'date' );
 			$grid_item = preg_replace_callback($pattern_date, function($matches) use ($post) {
 				$date_format = $matches[1];
 				return esc_html( get_the_date($date_format, $post->ID) );
 			}, $grid_item);
 
 			// Replace %meta('field_name')%
-			// Also supports encoded quotes caused by wp_kses inside HTML attributes,
-			// like %meta(&apos;field_name&apos;)% and %meta(&#039;field_name&#039;)%.
-			$pattern_meta = "/%meta\((?:'|&apos;|&#039;|&#x27;)([^'&\)]+)(?:'|&apos;|&#039;|&#x27;)\)%/";
+			$pattern_meta = cgrid_skin_tag_pattern( 'meta' );
 
 			$grid_item = preg_replace_callback($pattern_meta, function($matches) use ($post) {
 				$meta_field = $matches[1];
@@ -423,7 +437,7 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 			}
 
 			// Replace %tax('taxonomy_name')%
-			$pattern_tax = "/%tax\('([^']+)'\)%/";
+			$pattern_tax = cgrid_skin_tag_pattern( 'tax' );
 			$grid_item = preg_replace_callback($pattern_tax, function($matches) use ($post) {
 				$taxonomy_name = $matches[1];
 				$term_list = get_the_terms($post->ID, $taxonomy_name);
@@ -444,7 +458,7 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 			}
 
 			// Replace %taxsep('taxonomy_name')%
-			$pattern_taxsep = "/%taxsep\('([^']+)'\)%/";
+			$pattern_taxsep = cgrid_skin_tag_pattern( 'taxsep' );
 			$grid_item = preg_replace_callback($pattern_taxsep, function($matches) use ($post) {
 				$taxonomy_name = $matches[1];
 				$term_list = get_the_terms($post->ID, $taxonomy_name);
@@ -459,7 +473,7 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 			}, $grid_item);
 
 			// Replace %taxurl('taxonomy_name')%
-			$pattern_taxurl = "/%taxurl\('([^']+)'\)%/";
+			$pattern_taxurl = cgrid_skin_tag_pattern( 'taxurl' );
 			$grid_item = preg_replace_callback($pattern_taxurl, function($matches) use ($post) {
 				$taxonomy_name = $matches[1];
 				$term_list = get_the_terms($post->ID, $taxonomy_name);
@@ -474,14 +488,14 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 			}, $grid_item);
 
 			// Replace %img('img_size')%
-			$pattern_imgsize = "/%img\('([^']+)'\)%/";
+			$pattern_imgsize = cgrid_skin_tag_pattern( 'img' );
 			$grid_item = preg_replace_callback($pattern_imgsize, function($matches) use ($post) {
 				$size = $matches[1];
 				return get_the_post_thumbnail($post->ID, $size);
 			}, $grid_item);
 
 			// Replace %imgurl('img_size')%
-			$pattern_imgurlsize = "/%imgurl\('([^']+)'\)%/";
+			$pattern_imgurlsize = cgrid_skin_tag_pattern( 'imgurl' );
 			$grid_item = preg_replace_callback($pattern_imgurlsize, function($matches) use ($post) {
 				$size = $matches[1];
 				return esc_url( get_the_post_thumbnail_url($post->ID, $size) );
@@ -491,7 +505,8 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 			preg_match_all('/%\[([^\s\]]+)([^\]]*)\]%/', $grid_item, $shortcode_matches);
 			foreach ($shortcode_matches[0] as $index => $shortcode_tag) {
 				$shortcode_name   = $shortcode_matches[1][$index];
-				$shortcode_params = $shortcode_matches[2][$index];
+				// Decode quotes wp_kses encoded inside HTML attributes.
+				$shortcode_params = preg_replace( '/&apos;|&#0*39;|&#[xX]0*27;/', "'", $shortcode_matches[2][$index] );
 				$shortcode_output = do_shortcode("[$shortcode_name$shortcode_params id='{$post->ID}']"); // Add the post ID to the shortcode parameters
 				$grid_item = str_replace($shortcode_tag, $shortcode_output, $grid_item);
 			}
