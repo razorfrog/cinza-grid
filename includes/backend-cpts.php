@@ -666,6 +666,51 @@ function cgrid_meta_box_credits( $post ) {
 // Save Meta Boxes
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Sanitize the grid item template (skin) before it is saved.
+ *
+ * This is the same rule WordPress uses for post and page content. Users who
+ * may post unfiltered HTML (administrators and editors on a single site,
+ * unless DISALLOW_UNFILTERED_HTML is set) keep the template exactly as typed. Running wp_kses on
+ * their template encodes the quotes in placeholders inside attributes
+ * (src="%imgurl('large')%" becomes src="%imgurl(&apos;large&apos;)%") and
+ * drops attributes like decoding="async".
+ *
+ * Everyone else (authors and contributors) gets wp_kses with the post
+ * allowlist plus the image attributes templates commonly use. The renderer accepts encoded quotes in placeholders,
+ * so their templates still work.
+ *
+ * @param string $raw_skin Unslashed template from the form.
+ * @return string
+ */
+function cgrid_sanitize_skin( $raw_skin ) {
+	if ( current_user_can( 'unfiltered_html' ) ) {
+		return $raw_skin;
+	}
+
+	return wp_kses( $raw_skin, cgrid_skin_allowed_html() );
+}
+
+/**
+ * Tags and attributes allowed in a template saved without unfiltered_html.
+ *
+ * @return array
+ */
+function cgrid_skin_allowed_html() {
+	$allowed = wp_kses_allowed_html( 'post' );
+
+	$img_attributes = array(
+		'decoding'      => true,
+		'loading'       => true,
+		'fetchpriority' => true,
+		'srcset'        => true,
+		'sizes'         => true,
+	);
+	$allowed['img'] = array_merge( isset( $allowed['img'] ) ? $allowed['img'] : array(), $img_attributes );
+
+	return $allowed;
+}
+
 add_action( 'save_post', 'cgrid_save_fields_meta_boxes' );
 function cgrid_save_fields_meta_boxes( $post_id ) {
 
@@ -787,7 +832,7 @@ function cgrid_save_fields_meta_boxes( $post_id ) {
 	// -----------------------------
 	$raw_skin = filter_input( INPUT_POST, 'cgrid_skin_content', FILTER_UNSAFE_RAW );
 	$raw_skin = is_string( $raw_skin ) ? wp_unslash( $raw_skin ) : '';
-	$cgrid_skin_content = wp_kses( $raw_skin, wp_kses_allowed_html( 'post' ) );
+	$cgrid_skin_content = cgrid_sanitize_skin( $raw_skin );
 
 	update_post_meta(
 		$post_id,

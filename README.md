@@ -4,7 +4,7 @@ Cinza Grid is a minimal grid plugin built with [Isotope](https://isotope.metafiz
 
 - **WordPress.org:** https://wordpress.org/plugins/cinza-grid/
 - **Plugin page:** https://razorfrog.com/cinza-grid/
-- **Current release:** 2.0.0 · requires WordPress 5.2 and PHP 7.2 · tested up to WordPress 7.1
+- **Current release:** 2.0.1 · requires WordPress 5.2 and PHP 7.2 · tested up to WordPress 7.1
 - **License:** GPLv2 or later
 
 `readme.txt` is the WordPress.org plugin page (description, FAQ, changelog). For help, use the plugin's support forum on WordPress.org.

@@ -4,7 +4,7 @@ Tags: grid, post grid, display post, metafizzy, isotope
 Requires at least: 5.2
 Tested up to: 7.1
 Requires PHP: 7.2
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,14 @@ Upload the Cinza Grid plugin to your WordPress site, activate it, and start crea
 == Changelog ==
 
 Newest first. Dates are YYYY-MM-DD.
+
+= 2.0.1 (2026-11-09) =
+Fixed
+* Saving a grid no longer breaks its item template. Since 1.2.2 the template was filtered on save, which turned quotes inside HTML attributes into `&apos;` (so `src="%imgurl('medium_large')%"` stopped working) and removed attributes like `decoding="async"`.
+* Templates that were already saved with encoded quotes work again without being re-saved, for every meta tag that takes an argument and for PHP shortcodes.
+
+Changed
+* The template now follows the same rule as post and page content. Users who can post unfiltered HTML (administrators and editors) save it exactly as typed. Other users (authors and contributors) still get it filtered like their posts, now keeping the `decoding`, `loading`, `fetchpriority`, `srcset` and `sizes` image attributes.
 
 = 2.0.0 (2026-10-30) =
 Razorfrog is now the developer of Cinza Grid. Settings, layout and filtering work as before.
@@ -257,6 +265,9 @@ Added
 First beta release.
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+Fixes grid templates breaking when a grid is saved (images showing the placeholder instead of the photo).
 
 = 2.0.0 =
 Razorfrog is now the developer of Cinza Grid. No changes to settings or behavior.
