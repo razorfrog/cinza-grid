@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 add_action( 'init', 'cgrid_shortcodes_init' );
 function cgrid_shortcodes_init() {
 	add_shortcode( 'cinzagrid', 'cgrid_shortcode' ); // Main
@@ -240,7 +242,7 @@ function cgrid_shortcode( $atts = [], $content = null, $tag = 'cinzagrid' ) {
 
 	$script = "<script>
 
-	jQuery(window).load(function() {
+	jQuery(window).on('load', function() {
 		var grid = jQuery('#cinza-grid-".intval($grid_id)."').isotope();
 	});
 
