@@ -4,7 +4,7 @@ Tags: grid, post grid, display post, metafizzy, isotope
 Requires at least: 5.2
 Tested up to: 7.1
 Requires PHP: 7.2
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,11 @@ Upload the Cinza Grid plugin to your WordPress site, activate it, and start crea
 == Changelog ==
 
 Newest first. Dates are YYYY-MM-DD.
+
+= 2.0.2 (2026-11-14) =
+Fixed
+* The grid layout script no longer relies on jQuery Migrate (`jQuery(window).load` was removed in jQuery 3), so grids lay out correctly on sites that don't load it.
+* The plugin's own stylesheets and scripts are now versioned with the plugin, so changes aren't served stale from caches after an update.
 
 = 2.0.1 (2026-11-09) =
 Fixed
