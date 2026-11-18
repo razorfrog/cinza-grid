@@ -135,7 +135,8 @@
 .wp-core-ui.post-type-cinza_grid form#post select:focus, 
 .wp-core-ui.post-type-cinza_grid form#post textarea:focus,
 .wp-core-ui.post-type-cinza_grid form#post .button:focus,
-#cgrid-credits a:focus {
+.cgrid-rf-logo:focus,
+.cgrid-rf-plugins a:focus {
     border-color: #2271b1;
     box-shadow: 0 0 0 1px #2271b1;
     outline: 2px solid transparent;
@@ -214,7 +215,8 @@
 
 #cgrid-documentation .inside,
 #cgrid-shortcode .inside,
-#cgrid-credits .inside {
+#cgrid-razorfrog .inside,
+#cgrid-more-plugins .inside {
     overflow: hidden;
     padding: 12px;
     margin: 0;
@@ -225,31 +227,53 @@
     text-align: center;
 }
 
-/* Credits */
+/* Razorfrog boxes */
 
-#cgrid-credits .inside {
-    overflow: hidden;
-    padding: 12px;
+#cgrid-razorfrog .inside p {
+    margin: 10px 0;
+}
+
+.cgrid-rf-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    text-decoration: none;
+}
+
+.cgrid-rf-logo img {
+    border-radius: 8px;
+}
+
+.cgrid-rf-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 0 !important;
+}
+
+.cgrid-rf-plugins {
     margin: 0;
 }
 
-#cgrid-credits a {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    padding: 10px;
+.cgrid-rf-plugins li {
     margin: 0 0 10px;
 }
 
-#cgrid-credits a:last-child {
-    margin-bottom: 0px;
+.cgrid-rf-plugins li:last-child {
+    margin-bottom: 0;
 }
 
-#cgrid-credits a img {
-    width: 40px;
-    margin-right: 15px;
-    border-radius: 5px;
+.cgrid-rf-plugins a {
+    font-weight: 600;
+}
+
+.cgrid-rf-plugins span {
+    display: block;
+    color: #646970;
+    font-size: 12px;
 }
 
 /* Others */
