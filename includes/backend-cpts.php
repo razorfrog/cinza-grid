@@ -257,8 +257,8 @@ function cgrid_meta_box_options( $post ) {
 							echo '<select name="cgrid_posttype" id="cgrid_posttype">';
 							foreach ( $post_types  as $post_type ) {
 								if (
-										!str_starts_with($post_type, 'cinza_') &&
-										!str_starts_with($post_type, 'wpb_')
+										0 !== strpos( $post_type, 'cinza_' ) &&
+										0 !== strpos( $post_type, 'wpb_' )
 								) {?>
 									<option value="<?php echo esc_attr( strtolower( $post_type ) ); ?>" <?php if ( isset( $temp_posttype ) && ( $temp_posttype == $post_type ) ) echo 'selected="selected"'; ?>>
 										<?php echo esc_html( $post_type ); ?>
