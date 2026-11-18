@@ -4,7 +4,7 @@
  * Plugin Name:       Cinza Grid
  * Plugin URI:        https://razorfrog.com/cinza-grid/
  * Description:       A minimal grid plugin.
- * Version:           2.0.2
+ * Version:           2.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Razorfrog Web Design
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'CGRID_VERSION', '2.0.2' );
+define( 'CGRID_VERSION', '2.1.0' );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Register scrips for frontend

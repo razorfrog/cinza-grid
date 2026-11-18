@@ -169,7 +169,8 @@ function cgrid_add_fields_meta_boxes() {
 	add_meta_box('cgrid-skin', 'Skin', 'cgrid_meta_box_skin', 'cinza_grid', 'normal', 'default');
 	add_meta_box('cgrid-shortcode', 'Shortcode', 'cgrid_meta_box_shortcode', 'cinza_grid', 'side', 'default');
 	add_meta_box('cgrid-documentation', 'Documentation', 'cgrid_meta_box_doc', 'cinza_grid', 'side', 'default');
-	add_meta_box('cgrid-credits', 'Developers', 'cgrid_meta_box_credits', 'cinza_grid', 'side', 'default');
+	add_meta_box( 'cgrid-razorfrog', 'Razorfrog', 'cgrid_meta_box_razorfrog', 'cinza_grid', 'side', 'default' );
+	add_meta_box( 'cgrid-more-plugins', 'More free plugins from Razorfrog', 'cgrid_meta_box_more_plugins', 'cinza_grid', 'side', 'default' );
 	remove_meta_box( 'rank_math_metabox' , 'cinza_grid' , 'normal' );
 }
 
@@ -646,21 +647,78 @@ function cgrid_meta_box_doc( $post ) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Meta Box: _cgrid_doc
+// Meta Box: Razorfrog and more plugins
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function cgrid_meta_box_credits( $post ) {
-	$metafizzy_logo = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/metafizzy-icon.png';
-	$razorfrog_logo = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/razorfrog-icon-turquoise.png';
+/**
+ * Razorfrog box: who makes the plugin, plus help and review links.
+ *
+ * @param WP_Post $post Current post.
+ */
+function cgrid_meta_box_razorfrog( $post ) {
+	$icon = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/razorfrog-icon-turquoise.png';
 	?>
-	<a href="<?php echo esc_url( 'https://metafizzy.co/' ); ?>" class="button" target="_blank" rel="noopener noreferrer">
-		<img src="<?php echo esc_url( $metafizzy_logo ); ?>" alt="<?php esc_attr_e( 'Metafizzy', 'cinza-grid' ); ?>" />
-		<span><?php esc_html_e( 'Metafizzy', 'cinza-grid' ); ?></span>
-	</a>
-	<a href="<?php echo esc_url( 'https://razorfrog.com/' ); ?>" class="button" target="_blank" rel="noopener noreferrer">
-		<img src="<?php echo esc_url( $razorfrog_logo ); ?>" alt="<?php esc_attr_e( 'Razorfrog', 'cinza-grid' ); ?>" />
+	<a href="<?php echo esc_url( 'https://razorfrog.com/' ); ?>" class="cgrid-rf-logo" target="_blank" rel="noopener noreferrer">
+		<img src="<?php echo esc_url( $icon ); ?>" alt="" width="40" height="40" />
 		<span><?php esc_html_e( 'Razorfrog', 'cinza-grid' ); ?></span>
 	</a>
+	<p><?php esc_html_e( 'Cinza Grid is a free plugin by Razorfrog, a web agency in San Francisco.', 'cinza-grid' ); ?></p>
+	<p class="cgrid-rf-buttons">
+		<a class="button" href="<?php echo esc_url( 'https://wordpress.org/support/plugin/cinza-grid/' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get help', 'cinza-grid' ); ?></a>
+		<a class="button" href="<?php echo esc_url( 'https://wordpress.org/support/plugin/cinza-grid/reviews/#new-post' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Leave a review', 'cinza-grid' ); ?></a>
+	</p>
+	<?php
+}
+
+/**
+ * The other free Razorfrog plugins on wordpress.org, minus this one.
+ *
+ * @return array Slug => name and description.
+ */
+function cgrid_razorfrog_plugins() {
+	return array(
+		'cinza-slider' => array(
+			'name' => 'Cinza Slider',
+			'desc' => __( 'A minimal slider plugin built with Flickity.', 'cinza-grid' ),
+		),
+		'easy-content-lists' => array(
+			'name' => 'Easy Content Lists',
+			'desc' => __( 'Shortcodes for listing your pages, posts, taxonomies and tags.', 'cinza-grid' ),
+		),
+		'woo-product-dropdown-widget' => array(
+			'name' => 'Product Dropdown Widget for WooCommerce',
+			'desc' => __( 'A dropdown of WooCommerce products, by category, sorted by price, reviews or more.', 'cinza-grid' ),
+		),
+		'bulk-convert-post-format' => array(
+			'name' => 'Bulk Convert Post Format',
+			'desc' => __( 'Converts all posts in a category to a chosen post format.', 'cinza-grid' ),
+		),
+		'spinitron-player' => array(
+			'name' => 'Spinitron Player',
+			'desc' => __( 'A streaming player for radio stations that use Spinitron.', 'cinza-grid' ),
+		),
+		'link-in-bio-report' => array(
+			'name' => 'Link in Bio Report',
+			'desc' => __( 'Counts taps on your Instagram links page and emails a weekly report.', 'cinza-grid' ),
+		),
+	);
+}
+
+/**
+ * More free plugins box.
+ *
+ * @param WP_Post $post Current post.
+ */
+function cgrid_meta_box_more_plugins( $post ) {
+	?>
+	<ul class="cgrid-rf-plugins">
+		<?php foreach ( cgrid_razorfrog_plugins() as $slug => $plugin ) : ?>
+			<li>
+				<a href="<?php echo esc_url( 'https://wordpress.org/plugins/' . $slug . '/' ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $plugin['name'] ); ?></a>
+				<span><?php echo esc_html( $plugin['desc'] ); ?></span>
+			</li>
+		<?php endforeach; ?>
+	</ul>
 	<?php
 }
 
